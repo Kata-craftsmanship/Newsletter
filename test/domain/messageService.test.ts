@@ -7,12 +7,15 @@ import {
   stubMessage,
 } from "./stub";
 import { createMessageService } from "../../src/domain/message/port/userside/messageService";
-import { Message } from "../../src/domain/message/application/message";
+import {
+  CreateMessageParams,
+  Message,
+} from "../../src/domain/message/application/message";
 
 describe("Message Service", () => {
   it("doit créer un message", () => {
     //Given
-    const params = {
+    const params: CreateMessageParams = {
       id: 2,
       titre: "Mon titre",
       description: "ma description",
@@ -36,7 +39,7 @@ describe("Message Service", () => {
 
   it("Doit valider et publier un message validé", () => {
     //Given
-    const message = {
+    const message: Message = {
       id: 2,
       titre: "Mon titre",
       description: "ma description",
