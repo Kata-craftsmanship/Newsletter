@@ -1,0 +1,18 @@
+{
+  "name": "Bowling",
+  "type": "module",
+  "license": "MIT",
+  "author": "ddecrulle",
+  "main": "index.ts",
+  "scripts": {
+    "test": "vitest",
+    "test:ui": "vitest --ui",
+    "test:run": "vitest run"
+  },
+  "devDependencies": {
+    "@vitest/ui": "latest",
+    "typescript": "^4.9.5",
+    "vite": "latest",
+    "vitest": "latest"
+  }
+}
