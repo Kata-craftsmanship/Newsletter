@@ -1,24 +1,27 @@
-import { Message, Params } from "./message";
-import { MessagePublisher } from "./messagePublisher";
-import { MessageRepository } from "./messageRepository";
-
-export type DateService = {
-  now: () => number;
-};
+import { Message, CreateMessageParams } from "../../application/message";
+import {
+  MessagePublisher,
+  MessageRepository,
+  DateService,
+} from "../serverside";
 
 export type MessageService = {
-  creer: (param: Params) => Message;
+  creer: (param: CreateMessageParams) => Message;
   valider: (id: number) => Message;
 };
 
-export const createMessageService = (props: {
+export const createMessageService = (params: {
   messageRepository: MessageRepository;
   messagePublisher: MessagePublisher;
   dateService: DateService;
 }): MessageService => {
-  const { dateService, messageRepository, messagePublisher } = props;
+  const {
+    dateService = { now: () => Date.now() },
+    messageRepository,
+    messagePublisher,
+  } = params;
 
-  const creer = (params: Params): Message => {
+  const creer = (params: CreateMessageParams): Message => {
     const message: Message = {
       ...params,
       etat: "Brouillon",

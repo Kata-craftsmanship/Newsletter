@@ -1,4 +1,4 @@
-import { Message } from "./message";
+import { Message } from "../../application/message";
 
 export type MessageRepository = {
   persister: (message: Message) => void;

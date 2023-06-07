@@ -1,12 +1,15 @@
-import { Message, Params } from "../../../src/domain/message";
-import { MessagePublisher } from "../../../src/domain/messagePublisher";
-import { MessageRepository } from "../../../src/domain/messageRepository";
+import {
+  Message,
+  CreateMessageParams,
+} from "../../../src/domain/message/application/message";
 import {
   DateService,
-  createMessageService,
-} from "../../../src/domain/messageService";
+  MessagePublisher,
+  MessageRepository,
+} from "../../../src/domain/message/port/serverside";
+import { createMessageService } from "../../../src/domain/message/port/userside/messageService";
 
-export const stubMessageParams: Params = {
+export const stubMessageParams: CreateMessageParams = {
   titre: "Mon titre",
   description: "ma description",
   tag: ["tag1", "tag2"],
