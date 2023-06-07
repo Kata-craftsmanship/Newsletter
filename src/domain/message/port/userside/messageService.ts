@@ -8,6 +8,10 @@ import {
 export type MessageService = {
   creer: (param: CreateMessageParams) => Message;
   valider: (id: number) => Message;
+  modifier: (
+    id: number,
+    modifiedField: Partial<CreateMessageParams>
+  ) => Message;
 };
 
 export const createMessageService = (params: {
@@ -26,7 +30,6 @@ export const createMessageService = (params: {
       ...params,
       etat: "Brouillon",
       dateCreation: dateService.now(),
-      id: Math.random(),
     };
     messageRepository.persister(message);
     return message;
@@ -42,5 +45,17 @@ export const createMessageService = (params: {
     return message;
   };
 
-  return { creer, valider };
+  return {
+    creer,
+    valider,
+    modifier: (id, modifiedField) => {
+      const message = messageRepository.getById(id);
+      if (message.etat === "Brouillon") {
+        console.log("persisted message", { ...message, ...modifiedField });
+        messageRepository.persister({ ...message, ...modifiedField });
+        return { ...message, ...modifiedField };
+      }
+      return message;
+    },
+  };
 };

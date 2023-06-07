@@ -1,4 +1,5 @@
 export type CreateMessageParams = {
+  id: number;
   titre: string;
   description: string;
   tag: string[];
@@ -7,7 +8,6 @@ export type CreateMessageParams = {
 export type MessageEtat = "Brouillon" | "Publier";
 
 export type Message = CreateMessageParams & {
-  id: number;
   etat: MessageEtat;
   dateCreation: number;
 };
